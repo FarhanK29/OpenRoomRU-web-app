@@ -11,6 +11,7 @@ import time
 import sqlite3
 #Datetime for converting time to 24 hour format
 import datetime
+import os
  
 
 driver = webdriver.Chrome() 
@@ -121,7 +122,9 @@ time.sleep(1)#Just for visibility, seeing that everything is done before closing
 driver.quit()
 
 #Adding all data to database
-connection = sqlite3.connect('data/class_schedule.db')
+script_dir = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(script_dir, 'class_schedule.db')
+connection = sqlite3.connect(db_path)
 cursor = connection.cursor()
 
 cursor.execute('DROP TABLE IF EXISTS Schedule')
