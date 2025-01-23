@@ -1,0 +1,37 @@
+const db = require('../db/connection');
+
+function addRoomWithCode(room, code) {
+    return new Promise((resolve, reject) => {
+        const query = `
+            INSERT INTO Rooms (room, code)
+            VALUES (?, ?)
+        `;
+        db.run(query, [room, code], (err) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve();
+        }
+        );
+    });
+}
+
+exports.addRoom = async (req, res) => {
+
+    const { room, code } = req.query;
+
+
+    if (!room || !code) {
+        return res.status(400).json({ error: 'Room and code are required' });
+    }
+
+    try {
+        await addRoomWithCode(room, code);
+        res.json({ message: 'Room added successfully' });
+    } catch (err) {
+        console.error('Error adding room:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+// maps.rutgers.edu
