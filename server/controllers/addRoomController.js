@@ -16,6 +16,8 @@ function addRoomWithCode(room, code) {
     });
 }
 
+//an end point to add a room with its corresponding code into the database
+
 exports.addRoom = async (req, res) => {
 
     const { room, code } = req.query;
