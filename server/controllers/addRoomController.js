@@ -38,4 +38,4 @@ exports.addRoom = async (req, res) => {
 
 // maps.rutgers.edu
 
-//mak
+//use this endpoint to add each room with its corresponding code into the database using the following endpoint with the example paramaters: http://localhost:3000/api/add?room=Allison Road Classroom&code=ARC
